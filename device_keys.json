@@ -1,0 +1,26 @@
+{
+  "IOT001": {
+    "private_key": "63dd8f8d055d0982e91be4622351a70c17cab2bf1e55c2575e5218a087323d9f",
+    "public_key": "393712c5661bb84ff602953b5aa9498107607c731c903e4cfaf21fb8c1938194"
+  },
+  "IOT002": {
+    "private_key": "7ed1755efe2dfb34d30d1469de446f4b4039af56bd182075cb7115804f9adcc4",
+    "public_key": "6477edf4419b8b6181be2cc269810752741c3f1abd3066bca0201bee0b9f1bb1"
+  },
+  "IOT003": {
+    "private_key": "0883d37d3be32eb5c780e6b0e2762f67ab4a71abf40ef46f0981afc7dcd8c871",
+    "public_key": "0f1bc150477f91e5ee91abea51db49a4e78ea9aa178a1a35dde2cefd8e9a73c1"
+  },
+  "IOT004": {
+    "private_key": "a28c1103b606897bd311a3af514acad14b9a1a8f813516c3a024f8be9299697d",
+    "public_key": "33aa4225718b7025d81dd5911bef414c7e9ec9dddec7cffab1c1053422da5c97"
+  },
+  "IOT005": {
+    "private_key": "60827ed737cddc541d77ce3397337a05ea252ef5ec3fd8e271d32f413533c0d8",
+    "public_key": "8e84e53d0cde0faa564680c2e36300d71d04c09c1a9df179384e13602610e6ff"
+  },
+  "IOT006": {
+    "private_key": "88a90f373380160b235939d09fd46e63f426636d1e924adb15c2cc297f945525",
+    "public_key": "55f93bb71470ea5a6b5f1baaf1c2a5ac6363050a360933d66f3ac08a45b2a706"
+  }
+}
