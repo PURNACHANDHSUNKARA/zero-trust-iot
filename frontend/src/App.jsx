@@ -372,15 +372,7 @@ function MetaMaskAuthScreen({ onAuthenticateSuccess, theme, onToggleTheme }) {
                       <span className="title">{loading ? "Authenticating..." : "Connect MetaMask"}</span>
                       <span className="sub">Cryptographic EIP-191 Signature Verification</span>
                     </div>
-                  </button>
-
-                  <div className="demo-login-row">
-                    <span>No MetaMask extension active?</span>
-                    <button type="button" className="demo-link" onClick={handleSimulateAdmin}>
-                      Simulate Super Admin Login
-                    </button>
-                  </div>
-                </div>
+                  </button>                </div>
 
 
                 <div className="card-footer-info">
