@@ -4,10 +4,10 @@
   "private": true,
   "description": "Zero-Trust IoT Security Framework with Blockchain and DID",
   "scripts": {
-    "dev": "python run_all.py",
-    "start": "python python-security/server.py",
+    "dev": "python backend/run_all.py",
+    "start": "python backend/python-security/server.py",
     "frontend:dev": "npm --prefix frontend run dev",
-    "backend:run": "python python-security/server.py",
+    "backend:run": "python backend/python-security/server.py",
     "build": "npm --prefix frontend run build",
     "preview": "npm --prefix frontend run preview",
     "install:all": "npm --prefix frontend install && npm --prefix blockchain install",
