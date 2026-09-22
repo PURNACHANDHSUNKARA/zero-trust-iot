@@ -72,11 +72,12 @@ async function getProviderOrSigner(requireSigner = false) {
     try {
       const provider = new BrowserProvider(window.ethereum);
       if (requireSigner) {
+        await window.ethereum.request({ method: "eth_requestAccounts" });
         return await provider.getSigner();
       }
       return provider;
-    } catch {
-      // Fallback
+    } catch (e) {
+      console.warn("BrowserProvider getSigner fallback:", e.message);
     }
   }
   return new JsonRpcProvider(GANACHE_RPC_URL);
@@ -391,21 +392,31 @@ export async function getDeviceOnChain(deviceId) {
 }
 
 export async function revokeDeviceOnChain(deviceId) {
-  const signer = await getProviderOrSigner(true);
+  if (!window.ethereum) {
+    throw new Error("MetaMask extension is required to confirm on-chain transactions.");
+  }
+
+  const provider = new BrowserProvider(window.ethereum);
+  const accounts = await provider.send("eth_requestAccounts", []);
+  if (!accounts || accounts.length === 0) {
+    throw new Error("No MetaMask account connected. Please unlock MetaMask.");
+  }
+
+  const signer = await provider.getSigner();
   const contract = contractFor(DeviceIdentityArtifact, signer);
-  const signerAddress = await signer.getAddress();
+  const signerAddress = accounts[0];
 
   // Auto-register device on-chain if missing in storage mapping
   try {
     const existing = await contract.getDevice(deviceId).catch(() => null);
     if (!existing || !existing.did) {
+      console.log(`[blockchain] Auto-registering ${deviceId} on-chain before revocation...`);
       const regTx = await contract.registerDevice(
         deviceId,
-        "IoT Sensor",
+        "IoT Device",
         `did:iot:${deviceId}#${Math.random().toString(16).slice(2, 10)}`,
         signerAddress,
-        "SENSOR",
-        { gasLimit: 250000 }
+        "SENSOR"
       );
       await regTx.wait();
     }
@@ -413,27 +424,37 @@ export async function revokeDeviceOnChain(deviceId) {
     console.warn("Notice: Device auto-registration check:", e.message);
   }
 
-  const tx = await contract.revokeDevice(deviceId, { gasLimit: 200000 });
+  const tx = await contract.revokeDevice(deviceId);
   const receipt = await tx.wait();
   return { ok: true, txHash: receipt.hash, blockNumber: receipt.blockNumber, status: "REVOKED", deviceId };
 }
 
 export async function activateDeviceOnChain(deviceId) {
-  const signer = await getProviderOrSigner(true);
+  if (!window.ethereum) {
+    throw new Error("MetaMask extension is required to confirm on-chain transactions.");
+  }
+
+  const provider = new BrowserProvider(window.ethereum);
+  const accounts = await provider.send("eth_requestAccounts", []);
+  if (!accounts || accounts.length === 0) {
+    throw new Error("No MetaMask account connected. Please unlock MetaMask.");
+  }
+
+  const signer = await provider.getSigner();
   const contract = contractFor(DeviceIdentityArtifact, signer);
-  const signerAddress = await signer.getAddress();
+  const signerAddress = accounts[0];
 
   // Auto-register device on-chain if missing in storage mapping
   try {
     const existing = await contract.getDevice(deviceId).catch(() => null);
     if (!existing || !existing.did) {
+      console.log(`[blockchain] Auto-registering ${deviceId} on-chain before activation...`);
       const regTx = await contract.registerDevice(
         deviceId,
-        "IoT Sensor",
+        "IoT Device",
         `did:iot:${deviceId}#${Math.random().toString(16).slice(2, 10)}`,
         signerAddress,
-        "SENSOR",
-        { gasLimit: 250000 }
+        "SENSOR"
       );
       await regTx.wait();
     }
@@ -441,7 +462,7 @@ export async function activateDeviceOnChain(deviceId) {
     console.warn("Notice: Device auto-registration check:", e.message);
   }
 
-  const tx = await contract.activateDevice(deviceId, { gasLimit: 200000 });
+  const tx = await contract.activateDevice(deviceId);
   const receipt = await tx.wait();
   return { ok: true, txHash: receipt.hash, blockNumber: receipt.blockNumber, status: "ACTIVE", deviceId };
 }

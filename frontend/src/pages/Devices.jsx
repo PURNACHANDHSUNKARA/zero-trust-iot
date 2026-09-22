@@ -62,7 +62,13 @@ export default function Devices() {
         prev.map((d) => (d.device_id === deviceId ? { ...d, status: action === "revoke" ? "REVOKED" : "ACTIVE" } : d))
       );
     } catch (err) {
-      setMessage({ type: "alert", text: err.message });
+      let friendlyError = err.message || "Transaction failed.";
+      if (friendlyError.includes("-32002") || friendlyError.includes("RPC endpoint") || friendlyError.includes("could not coalesce")) {
+        friendlyError = "Ganache local network is offline or unreachable on http://127.0.0.1:7545. Please make sure Ganache or Hardhat node is running.";
+      } else if (friendlyError.includes("user rejected") || friendlyError.includes("ACTION_REJECTED")) {
+        friendlyError = "Transaction confirmation was cancelled in MetaMask.";
+      }
+      setMessage({ type: "alert", text: friendlyError });
     } finally {
       setBusyId(null);
     }
