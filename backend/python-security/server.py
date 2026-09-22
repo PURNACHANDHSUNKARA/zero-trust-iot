@@ -16,6 +16,9 @@ ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PYTHON_DIR = os.path.join(ROOT_DIR, "python-security")
 FRONTEND_DATA_DIR = os.path.join(ROOT_DIR, "frontend", "public", "data")
 
+if ROOT_DIR not in sys.path:
+    sys.path.insert(0, ROOT_DIR)
+
 if PYTHON_DIR not in sys.path:
     sys.path.insert(0, PYTHON_DIR)
 
