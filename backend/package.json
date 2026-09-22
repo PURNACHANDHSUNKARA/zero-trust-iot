@@ -4,9 +4,9 @@
   "private": true,
   "description": "Zero-Trust IoT Security Framework Backend Engine & API Server",
   "scripts": {
-    "start": "python python-security/server.py",
+    "start": "gunicorn --bind 0.0.0.0:${PORT:-8000} --chdir python-security server:app",
     "dev": "python run_all.py",
-    "backend:run": "python python-security/server.py",
+    "backend:run": "gunicorn --bind 0.0.0.0:${PORT:-8000} --chdir python-security server:app",
     "install:all": "npm --prefix blockchain install",
     "blockchain:test": "npm --prefix blockchain test",
     "blockchain:deploy": "npm --prefix blockchain run deploy"
