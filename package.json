@@ -14,8 +14,9 @@
     "blockchain:test": "npm --prefix blockchain test",
     "blockchain:deploy": "npm --prefix blockchain run deploy"
   },
-  "devDependencies": {
-    "vite": "^8.2.2"
+  "dependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.21"
   }
 }
 
