@@ -30,7 +30,7 @@ if sys.platform == "win32":
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 PYTHON_DIR = os.path.join(ROOT_DIR, "python-security")
-FRONTEND_DIR = os.path.join(ROOT_DIR, "frontend")
+FRONTEND_DIR = os.path.join(os.path.dirname(ROOT_DIR), "frontend")
 BLOCKCHAIN_DIR = os.path.join(ROOT_DIR, "blockchain")
 
 sys.path.insert(0, PYTHON_DIR)

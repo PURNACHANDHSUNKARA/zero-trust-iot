@@ -31,7 +31,7 @@ import database
 import dataset_analysis
 import ml_models
 
-OUT_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend", "public", "data")
+OUT_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "frontend", "public", "data")
 
 
 def _json_default(obj):
