@@ -1,0 +1,31 @@
+# .dockerignore for backend
+
+node_modules/
+blockchain/node_modules/
+.venv/
+venv/
+python-security/venv/
+python-security/.venv/
+
+# Secrets and environment files
+.env
+*.env
+.env.*
+python-security/.env
+blockchain/.env
+device_keys.json
+
+# Caches and builds
+blockchain/artifacts/
+blockchain/cache/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Git and OS
+.git/
+.gitignore
+.vscode/
+*.log
+.DS_Store

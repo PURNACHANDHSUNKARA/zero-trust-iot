@@ -1,0 +1,23 @@
+{
+  "name": "zero-trust-iot-blockchain",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Solidity contracts + compile/deploy tooling for the Zero-Trust IoT project. Deploys to a local Ganache instance.",
+  "scripts": {
+    "compile": "hardhat compile",
+    "deploy": "node scripts/deploy.js",
+    "test": "mocha test/*.test.js --timeout 30000"
+  },
+  "dependencies": {
+    "@nomicfoundation/edr-win32-arm64-msvc": "^0.3.3",
+    "@nomicfoundation/edr-win32-x64-msvc": "^0.15.0",
+    "@nomicfoundation/hardhat-ethers": "^4.0.15",
+    "@nomicfoundation/solidity-analyzer-win32-arm64-msvc": "^0.1.1",
+    "chai": "^4.3.10",
+    "dotenv": "^17.4.2",
+    "ethers": "^6.17.0",
+    "hardhat": "^3.12.0",
+    "mocha": "^11.1.0"
+  }
+}

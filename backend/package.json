@@ -1,0 +1,14 @@
+{
+  "name": "zero-trust-iot-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Zero-Trust IoT Security Framework Backend Engine & API Server",
+  "scripts": {
+    "start": "python python-security/server.py",
+    "dev": "python run_all.py",
+    "backend:run": "python python-security/server.py",
+    "install:all": "npm --prefix blockchain install",
+    "blockchain:test": "npm --prefix blockchain test",
+    "blockchain:deploy": "npm --prefix blockchain run deploy"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "zero-trust-iot-root",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Zero-Trust IoT Security Framework with Blockchain and DID",
+  "scripts": {
+    "dev": "python run_all.py",
+    "start": "python python-security/server.py",
+    "frontend:dev": "npm --prefix frontend run dev",
+    "backend:run": "python python-security/server.py",
+    "build": "npm --prefix frontend run build",
+    "preview": "npm --prefix frontend run preview",
+    "install:all": "npm --prefix frontend install && npm --prefix blockchain install",
+    "blockchain:test": "npm --prefix blockchain test",
+    "blockchain:deploy": "npm --prefix blockchain run deploy"
+  },
+  "devDependencies": {
+    "vite": "^8.2.2"
+  }
+}
+

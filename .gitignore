@@ -1,0 +1,38 @@
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+backend/.env
+frontend/.env
+*.env
+device_keys.json
+backend/device_keys.json
+backend/python-security/device_keys.json
+
+# Dependencies
+node_modules/
+**/node_modules/
+.venv/
+venv/
+**/venv/
+**/__pycache__/
+*.pyc
+
+# Build outputs & deployment caches
+dist/
+**/dist/
+build/
+**/build/
+.vercel/
+coverage/
+backend/blockchain/artifacts/
+backend/blockchain/cache/
+
+# Exported dashboard data (regenerated automatically)
+frontend/public/data/*.json
+
+# OS and Editor files
+.DS_Store
+.vscode/
+.idea/
+*.log
